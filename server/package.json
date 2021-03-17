@@ -1,0 +1,10 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "Demo server for SalutDoc",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^4.2.3",
+    "@types/node": "^14.14.35"
+  }
+}
