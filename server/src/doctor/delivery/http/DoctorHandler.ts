@@ -12,6 +12,11 @@ type FetchAppointmentsParams = {
     id: number
 }
 
+type DeleteAppointmentParams = {
+    doc_id: number
+    app_id: number
+}
+
 class DoctorHandler {
     protected doctorRepo: DoctorRepository
     protected appointmentRepo: AppointmentRepository
@@ -30,6 +35,18 @@ class DoctorHandler {
                     date: { type: 'string' },
                     limit: { type: 'number', default: 15 },
                     offset: { type: 'number', default: 0 },
+                }
+            }
+        }
+    }
+
+    static DeleteAppointmentSchema = {
+        schema: {
+            params: {
+                type: 'object',
+                properties: {
+                    doc_id: { type: 'number' },
+                    app_id: { type: 'number' }
                 }
             }
         }
@@ -82,6 +99,19 @@ class DoctorHandler {
             data: doctors
         })
     }
+    async DeleteAppointment(request: FastifyRequest, response: FastifyReply) {
+        const { doc_id, app_id } = request.params as DeleteAppointmentParams
+
+        const doctor = await this.doctorRepo.GetById(doc_id)
+            .catch(err => console.log(err))
+
+        if (!doctor) return response.status(404).send()
+
+        const status = await this.appointmentRepo.Remove(app_id)
+            .catch(err => console.log(err))
+
+        return response.send(status)
+    }
 }
 
 export function HandleDoctor(
@@ -98,6 +128,11 @@ export function HandleDoctor(
     router.get(
         '/doctors',
         handler.GetAll.bind(handler)
+    )
+    router.delete(
+        '/doctor/:doc_id/appointment/:app_id',
+        DoctorHandler.DeleteAppointmentSchema,
+        handler.DeleteAppointment.bind(handler)
     )
 }
 
