@@ -3,15 +3,15 @@ import styles from 'styles/ui/Select.module.css'
 import {ClassAttributes, HTMLAttributes, useEffect, useRef, useState} from 'react'
 
 type SelectProps = {
-    label: string
+    label?: string
     data: Record<string, any>[]
-    dataKey: string,
+    datakey: string,
     value: number,
     onChangeOption: (number: number) => void
 }   & ClassAttributes<HTMLDivElement>
     & HTMLAttributes<HTMLDivElement>
 
-export default function Select(props: SelectProps) {
+export default function Select({label = '', onChangeOption, ...props}: SelectProps) {
     const [isOpen, setOpen] = useState(false)
     const ref = useRef(null)
 
@@ -50,7 +50,7 @@ export default function Select(props: SelectProps) {
                     className={clsx(styles.select__value, isOpen && styles.select__value_active)}
                     ref={ref}
                 >
-                    { `${props.label} ${props.data[props.value][props.dataKey]}` }
+                    { `${label} ${props.data[props.value][props.datakey]}` }
                 </div>
                 <div className={clsx(styles.select__arrow, isOpen && styles.select__arrow_open)} />
             </div>
@@ -62,9 +62,9 @@ export default function Select(props: SelectProps) {
                         <button
                             key={index}
                             className={clsx(styles.option__item, (index === props.value) && styles.option__item_active)}
-                            onClick={() => props.onChangeOption(index)}
+                            onClick={() => onChangeOption(index)}
                         >
-                            {option[props.dataKey]}
+                            {option[props.datakey]}
                         </button>
                     ))
                 }
