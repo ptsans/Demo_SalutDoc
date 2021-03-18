@@ -1,5 +1,11 @@
-import { RegularUser } from './RegularUser'
+import { RegularUser, UserName} from './RegularUser'
 
 type Patient = RegularUser
 
-export { Patient }
+interface PatientRepository {
+    Create(
+        name: UserName
+    ): Promise<Patient>
+}
+
+export { Patient, PatientRepository }
