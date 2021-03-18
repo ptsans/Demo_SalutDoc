@@ -15,8 +15,11 @@
     border-radius: 15px;
     box-sizing: border-box;
     padding: 1rem 3.2rem 1rem 1rem;
-    transition: all 200ms ease;
+    transition: border-color ease .2s;
     width: 100%;
+}
+.select__value_active {
+    border-color: #7F9C96;
 }
 .select__arrow {
     position: absolute;
@@ -29,9 +32,11 @@
     right: 1rem;
     top: 50%;
     width: 0;
+    transition: border-color ease .2s;
 }
 .select__arrow_open {
     transform: rotateX(180deg) translate(0, 0.2rem);
+    border-color: #7F9C96 transparent transparent;
 }
 .option {
     display: none;
