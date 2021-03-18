@@ -8,8 +8,8 @@ type Date = {
 }
 
 type Time = {
-    hour: number
-    minute: number
+    hours: number
+    minutes: number
 }
 
 type AppointmentDate = {
@@ -35,6 +35,23 @@ type Appointment = {
 }
 
 interface AppointmentRepository {
+    FetchOpened(
+        doctor: Doctor,
+        date: Date
+    ): Promise<Array<Time>>
+
+    FetchByDoctor(
+        doctor: Doctor,
+        date: Date | undefined,
+        offset: number,
+        limit: number
+    ): Promise<Array<Appointment>>
+
+    FetchByDate(
+        doctor: Doctor,
+        date: AppointmentDate
+    ): Promise<Appointment>
+
     Create(
         patient: Patient,
         doctor: Doctor,
@@ -47,4 +64,13 @@ interface AppointmentRepository {
     ): Promise<boolean>
 }
 
-export { Appointment, AppointmentRepository }
+export {
+    Appointment,
+    AppointmentRepository,
+    AppointmentId,
+    AppointmentComplaints,
+    AppointmentDate,
+    AppointmentStatus,
+    Date,
+    Time
+}
