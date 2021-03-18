@@ -120,8 +120,6 @@ export default function FormPage() {
                     label="Ваше ФИО:"
                     value={patient}
                     onChange={(event) => setPatient(event.target.value)}
-                    required
-                    pattern="banana|cherry"
                 />
             </Box>
 
