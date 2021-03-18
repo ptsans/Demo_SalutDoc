@@ -1,4 +1,5 @@
 import fastify from 'fastify'
+import fastifyCors from 'fastify-cors'
 import { Database } from 'sqlite3'
 import { SqliteDoctorRepository } from 'doctor/repository/sqlite/SqliteDoctor'
 import { SqliteAppointmentRepository } from 'appointment/repository/sqlite/SqliteAppointment'
@@ -16,6 +17,10 @@ const patientRepo = new SqlitePatientRepository(db)
 
 const router = fastify({
     logger: false
+})
+
+router.register(fastifyCors, {
+    origin: true
 })
 
 HandleDoctor(router, appointmentRepo, doctorRepo)
