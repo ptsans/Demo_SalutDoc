@@ -1,0 +1,19 @@
+.input {
+    margin: 0 2rem;
+    padding: 1rem;
+    border: solid medium #cecece;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    transition: border-color ease .2s;
+    display: flex;
+    flex-grow: 1;
+}
+.input:focus {
+    outline: none;
+    border-color: #7F9C96;
+}
+.input__label {
+    font-family: sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
