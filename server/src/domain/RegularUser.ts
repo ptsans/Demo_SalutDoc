@@ -9,4 +9,4 @@ type RegularUser = {
     name: UserName
 }
 
-export { RegularUser }
+export { RegularUser, UserName, UserId }
