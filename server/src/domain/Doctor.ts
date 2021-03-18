@@ -1,14 +1,13 @@
-import { RegularUser } from './RegularUser'
-import { Appointment } from './Appointment';
+import { RegularUser, UserId } from './RegularUser'
 
 type Doctor = RegularUser
 
 interface DoctorRepository {
-    FetchAppointments(
-        doctor: Doctor,
-        offset: number,
-        limit: number
-    ): Promise<Array<Appointment>>
+    GetAll(): Promise<Array<Doctor>>
+
+    GetById(
+        id: UserId
+    ): Promise<Doctor>
 }
 
 export { Doctor, DoctorRepository }
