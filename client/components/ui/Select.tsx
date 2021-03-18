@@ -11,6 +11,10 @@ type SelectProps = {
 }   & ClassAttributes<HTMLDivElement>
     & HTMLAttributes<HTMLDivElement>
 
+const resolvePath = (object: Record<string, any>, path: string, defaultValue = '') => path
+    .split('.')
+    .reduce((o, p) => o ? o[p] : defaultValue, object)
+
 export default function Select({label = '', onChangeOption, ...props}: SelectProps) {
     const [isOpen, setOpen] = useState(false)
     const ref = useRef(null)
@@ -50,7 +54,7 @@ export default function Select({label = '', onChangeOption, ...props}: SelectPro
                     className={clsx(styles.select__value, isOpen && styles.select__value_active)}
                     ref={ref}
                 >
-                    { `${label} ${props.data[props.value][props.datakey]}` }
+                    { `${label} ${resolvePath(props.data[props.value], props.datakey)}` }
                 </div>
                 <div className={clsx(styles.select__arrow, isOpen && styles.select__arrow_open)} />
             </div>
@@ -64,7 +68,7 @@ export default function Select({label = '', onChangeOption, ...props}: SelectPro
                             className={clsx(styles.option__item, (index === props.value) && styles.option__item_active)}
                             onClick={() => onChangeOption(index)}
                         >
-                            {option[props.datakey]}
+                            {resolvePath(option, props.datakey)}
                         </button>
                     ))
                 }
