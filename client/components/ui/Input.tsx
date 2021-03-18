@@ -4,7 +4,7 @@ import {InputHTMLAttributes} from 'react'
 
 type InputProps = {
     id: string
-    label: string
+    label?: string
 }   & InputHTMLAttributes<HTMLInputElement>
 
 export default function Input(props: InputProps) {
@@ -12,12 +12,15 @@ export default function Input(props: InputProps) {
 
     return (
         <>
-            <label
-                htmlFor={props.id}
-                className={styles.input__label}
-            >
-                {props.label}
-            </label>
+            {props.label && (
+                <label
+                    htmlFor={props.id}
+                    className={styles.input__label}
+                >
+                    {props.label}
+                </label>
+            )}
+
             <input
                 className={clsx(styles.input, className)}
                 {...otherProps}
