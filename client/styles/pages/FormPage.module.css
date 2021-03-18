@@ -1,0 +1,9 @@
+.page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 2rem;
+}
