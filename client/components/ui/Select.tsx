@@ -4,7 +4,8 @@ import {ClassAttributes, HTMLAttributes, useEffect, useRef, useState} from 'reac
 
 type SelectProps = {
     label: string
-    data: string[]
+    data: Record<string, any>[]
+    dataKey: string,
     value: number,
     onChangeOption: (number: number) => void
 }   & ClassAttributes<HTMLDivElement>
@@ -46,10 +47,10 @@ export default function Select(props: SelectProps) {
                 onClick={() => setOpen((prev) => !prev)}
             >
                 <div
-                    className={styles.select__value}
+                    className={clsx(styles.select__value, isOpen && styles.select__value_active)}
                     ref={ref}
                 >
-                    { `${props.label} ${props.data[props.value]}` }
+                    { `${props.label} ${props.data[props.value][props.dataKey]}` }
                 </div>
                 <div className={clsx(styles.select__arrow, isOpen && styles.select__arrow_open)} />
             </div>
@@ -63,7 +64,7 @@ export default function Select(props: SelectProps) {
                             className={clsx(styles.option__item, (index === props.value) && styles.option__item_active)}
                             onClick={() => props.onChangeOption(index)}
                         >
-                            {option}
+                            {option[props.dataKey]}
                         </button>
                     ))
                 }
