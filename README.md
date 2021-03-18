@@ -4,7 +4,7 @@
 
 ### In the client project directory, you can run:
 
-#### `yarn dev`
+#### `yarn react_dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,6 +14,6 @@ You will also see any lint errors in the console.
 
 ### In the server project directory, you can run:
 
-#### `yarn dev`
+#### `yarn node_dev`
 
 Runs the node with typescript in the development mode.

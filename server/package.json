@@ -4,7 +4,7 @@
   "description": "Demo server for SalutDoc",
   "private": true,
   "scripts": {
-    "dev": "ts-node-dev --project ./tsconfig.json --transpile-only -r tsconfig-paths/register src/**/*.ts ./src/app/main.ts"
+    "node_dev": "ts-node-dev --project ./tsconfig.json --transpile-only -r tsconfig-paths/register src/**/*.ts ./src/app/main.ts"
   },
   "dependencies": {
     "fastify": "^3.14.0",
