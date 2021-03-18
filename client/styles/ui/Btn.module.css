@@ -1,0 +1,21 @@
+.button {
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    display: flex;
+    margin: 0 auto;
+    border: solid medium #cecece;
+    border-radius: 15px;
+    transition: all ease .2s;
+    color: #7A7D7D;
+    letter-spacing: 0.05em;
+}
+.button:focus {
+    outline: none;
+}
+.button:hover {
+    border-color: #7F9C96;
+    color: #7F9C96;
+}
