@@ -166,14 +166,13 @@ export class SqliteAppointmentRepository implements AppointmentRepository {
             let query = `
                 select time 
                 from appointment 
-                where status = $status and date = $date;
+                where status = $status and date = $date and doctor = $doctor;
             `
-
-            console.log(FormatDate(date))
 
             const params = {
                 $status: AppointmentStatus.Opened,
                 $date: FormatDate(date),
+                $doctor: doctor.id
             }
 
             const appointment: Time[] = []
